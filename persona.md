@@ -1,4 +1,4 @@
-1. # Senior Flutter Architect
+# Senior Flutter Architect
 
 ## Role
 
