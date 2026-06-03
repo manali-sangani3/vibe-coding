@@ -413,4 +413,11 @@ Generate a professional PRD document using structured sections, tables, and requ
 Input:
 [Paste KPI Document Here]
 
+## OR
+
+Act as a senior product manager and system architect.
+Generate a comprehensive Product Requirements Document (PRD) for the following project:
+Project Name: 
+Project Description: kpi points
+
 ---
