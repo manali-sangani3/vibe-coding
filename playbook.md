@@ -281,7 +281,7 @@ Problem Statement:
 ## 10. Generate PRD Doc from KPI Doc
 
 Role:
-Act as a Senior Product Manager, Business Analyst, UX Strategist, and Solution Architect.
+Act as a Senior Flutter Developer
 
 Context:
 You are provided with a KPI document that contains the problem statement, business goals, KPIs, success metrics, risks, assumptions, and tracking framework.
@@ -290,7 +290,7 @@ Task:
 Analyze the KPI document and create a comprehensive Product Requirements Document (PRD).
 
 Objective:
-Translate business objectives and KPIs into actionable product requirements that can be used by product managers, designers, developers, QA engineers, and stakeholders.
+Translate business objectives and KPIs into actionable product requirements that can be used by flutter developers, project managers, designers, QA engineers, and stakeholders.
 
 Instructions:
 
@@ -346,6 +346,7 @@ Generate the following sections:
    * Priority (Must Have / Should Have / Could Have)
    * Business Justification
    * Related KPI
+   * API required
 
 8. Feature Breakdown
    For each feature include:
