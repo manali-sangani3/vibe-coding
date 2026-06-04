@@ -1,3 +1,5 @@
+<!-- Use all these prompts without spacing and gaps as spaces consumes tokens. Below prompts are for understanding purpose.-->
+
 # AI Prompt Playbook
 
 ## 1. Research Topic
@@ -419,5 +421,79 @@ Act as a senior product manager and system architect.
 Generate a comprehensive Product Requirements Document (PRD) for the following project:
 Project Name: 
 Project Description: kpi points
+
+---
+
+## 11. Flutter Error Resolution Prompt
+
+Act as a Senior Flutter Developer.
+
+Analyze the following Flutter issue.
+
+Requirements:
+
+* Find root cause
+* Give exact fix
+* Show only changed code
+* Mention affected files
+* Explain briefly
+* No assumptions
+* If information is missing, stop and ask questions
+
+Issue:
+[ERROR]
+
+Code:
+[CODE]
+
+## OR
+
+Act as a Senior Flutter Developer.
+
+Issue: [ERROR]
+
+Files:
+[FILE_LIST]
+
+Goal: Fix this error with minimal code changes.
+
+---
+
+## 12. Flutter Error Resolution Prompt
+
+Act as a Senior Flutter Developer and QA Architect.
+
+Using the provided PRD.md, generate TDD.md.
+
+Requirements:
+
+* Extract features and acceptance criteria.
+* Create positive, negative, and edge test cases.
+* Define unit, widget, and integration tests.
+* Include validation rules, expected results, coverage goals, risks, and Definition of Done.
+* No assumptions.
+* If requirements are unclear, stop and ask questions.
+
+Output:
+Markdown TDD.md only.
+
+---
+
+## 13. TDD document genertaion from PRD document prompt
+
+Act as a Senior Flutter Developer and QA Architect. 
+
+Using the provided prd.md, generate TDD.md.
+
+Requirements:
+* Extract features and acceptance criteria.
+* Create positive, negative, and edge test cases.
+* Define unit, widget, and integration tests.
+* Include validation rules, expected results, coverage goals, risks, and Definition of Done.
+* No assumptions.
+* If requirements are unclear, stop and ask questions.
+
+Output: 
+Markdown TDD.md only.
 
 ---
