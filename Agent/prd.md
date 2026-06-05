@@ -1,715 +1,1066 @@
-# PRD Document
+# Enterprise Employee Travel & Expense Management System
 
 ## Given Prompt
 
-Role:
-Act as a Senior Flutter Developer
+# Role
 
-Context:
-You are provided with a KPI document that contains the problem statement, business goals, KPIs, success metrics, risks, assumptions, and tracking framework.
+Act as a Senior Product Manager, Senior Flutter Architect, Senior Backend Architect (Node.js), Business Analyst, Solution Architect, QA Lead, and DevOps Consultant.
 
-Task:
-Analyze the KPI document and create a comprehensive Product Requirements Document (PRD).
+# Context
 
-Objective:
-Translate business objectives and KPIs into actionable product requirements that can be used by flutter developers, project managers, designers, QA engineers, and stakeholders.
+You are provided with a KPI document containing:
 
-Instructions:
+* Problem Statement
+* Business Goals
+* KPIs
+* Success Metrics
+* Risks
+* Assumptions
+* Tracking Framework
 
-Generate the following sections:
+The system will be developed using:
 
-1. Executive Summary
+* Flutter (Mobile Application)
+* Node.js Backend
+* REST APIs
+* SQL/NoSQL Database
+* Cloud Infrastructure
 
-   * Product overview
-   * Business context
-   * Vision statement
-   * Expected business impact
+# Task
 
-2. Problem Statement
+Analyze the KPI document and generate a comprehensive Product Requirements Document (PRD) that can be directly used by:
 
-   * Existing challenges
-   * User pain points
-   * Business impact
-   * Opportunity statement
+* Flutter Developers
+* Backend Developers
+* QA Engineers
+* DevOps Engineers
+* Product Managers
+* UI/UX Designers
+* Business Stakeholders
 
-3. Goals & Success Criteria
+# Objective
 
-   * Business goals
-   * Product goals
-   * KPI mapping
-   * Success metrics
+Convert business goals and KPIs into:
 
-4. Stakeholder Analysis
+* Product Requirements
+* Flutter Requirements
+* Backend Requirements
+* API Specifications
+* Database Requirements
+* Testing Requirements
 
-   * Stakeholders
-   * Responsibilities
-   * Decision makers
+Every requirement must map back to at least one KPI or Business Goal.
 
-5. User Personas
+---
 
-   * Primary users
-   * Secondary users
-   * User needs
-   * Motivations
-   * Frustrations
+# 1. Executive Summary
 
-6. User Journey
+Generate:
 
-   * Current state journey
-   * Future state journey
-   * Key touchpoints
+* Product Overview
+* Business Context
+* Product Vision
+* Expected Business Impact
+* Success Definition
 
-7. Functional Requirements
-   For each requirement include:
+---
 
-   * Requirement ID
-   * Title
-   * Description
-   * Priority (Must Have / Should Have / Could Have)
-   * Business Justification
-   * Related KPI
-   * API required
+# 2. Problem Statement
 
-8. Feature Breakdown
-   For each feature include:
+Include:
 
-   * Feature Name
-   * Purpose
-   * User Value
-   * Business Value
-   * Dependencies
+* Existing Challenges
+* User Pain Points
+* Business Impact
+* Opportunity Statement
 
-9. User Stories
-   Format:
+---
 
-   * As a [user]
-   * I want [goal]
-   * So that [benefit]
+# 3. Goals & KPI Mapping
 
-10. Acceptance Criteria
-    Use Gherkin format:
+Create:
 
-    * Given
-    * When
-    * Then
+| Business Goal | Product Goal | KPI | Target |
+| ------------- | ------------ | --- | ------ |
 
-11. Non-Functional Requirements
+Include:
 
-    * Performance
-    * Scalability
-    * Security
-    * Accessibility
-    * Reliability
-    * Compliance
+* Business Goals
+* Product Goals
+* Success Criteria
 
-12. Technical Considerations
+---
 
-    * API requirements
-    * Third-party integrations
-    * Data requirements
-    * Analytics requirements
+# 4. Stakeholder Analysis
 
-13. Risks & Constraints
+Generate:
 
-    * Business risks
-    * Technical risks
-    * Assumptions
-    * Dependencies
+| Stakeholder | Responsibility |
+| ----------- | -------------- |
 
-14. Release Planning
+Include:
 
-    * MVP scope
-    * Phase 2 scope
-    * Future enhancements
+* Employees
+* Managers
+* Finance Team
+* Travel Team
+* Compliance Team
+* Admin Team
+* IT Team
 
-15. KPI Traceability Matrix
-    Create a table showing:
-    KPI → Product Goal → Feature → User Story → Success Metric
+---
 
-16. Open Questions
-    List unclear areas, missing information, assumptions, and decisions requiring stakeholder validation.
+# 5. User Personas
 
-Output Format:
-Generate a professional PRD document using structured sections, tables, and requirement matrices. Ensure every feature and requirement directly maps back to a KPI or business objective from the provided KPI document.
+For each persona include:
 
-Input:
-I have Attached kpi.md file make PRD document
+* Role
+* Responsibilities
+* Goals
+* Frustrations
+* Needs
+
+---
+
+# 6. User Journey
+
+Generate:
+
+## Current Journey
+
+* Step
+* Pain Point
+
+## Future Journey
+
+* Step
+* System Action
+* KPI Impact
+
+---
+
+# 7. Product Scope
+
+## In Scope
+
+## Out of Scope
+
+## Future Scope
+
+---
+
+# 8. Functional Requirements
+
+For every requirement generate:
+
+| ID | Module | Requirement | Priority | KPI Mapping |
+| -- | ------ | ----------- | -------- | ----------- |
+
+Modules:
+
+* Authentication
+* User Management
+* Travel Request
+* Travel Approval
+* Expense Claim
+* Reimbursement
+* Notifications
+* Dashboard
+* Reports
+* Audit Logs
+* Administration
+
+---
+
+# 9. Flutter Architecture Requirements
+
+Generate:
+
+## State Management
+
+Recommend:
+
+* Riverpod / Bloc
+
+Justification.
+
+## App Architecture
+
+* Feature First Architecture
+* Clean Architecture
+* Repository Pattern
+* Dependency Injection
+
+## Module Structure
+
+Generate folder structure.
+
+Example:
+
+lib/
+├── core/
+├── shared/
+├── features/
+│ ├── auth/
+│ ├── travel/
+│ ├── expense/
+│ ├── reimbursement/
+│ ├── dashboard/
+
+## Navigation Structure
+
+## Offline Support Requirements
+
+## Caching Strategy
+
+## Push Notification Requirements
+
+## Error Handling Strategy
+
+## Logging & Monitoring Strategy
+
+## Analytics Events
+
+Map analytics to KPIs.
+
+---
+
+# 10. Backend Architecture Requirements
+
+Generate:
+
+## Architecture Style
+
+Recommend:
+
+* Modular Monolith OR Microservice
+
+Provide justification.
+
+## Node.js Structure
+
+src/
+├── modules/
+├── shared/
+├── middleware/
+├── config/
+├── jobs/
+├── integrations/
+
+## Required Modules
+
+For each module provide:
+
+* Purpose
+* Responsibilities
+* APIs
+
+Modules:
+
+* Auth
+* User
+* Travel
+* Approval
+* Expense
+* Reimbursement
+* Notification
+* Reporting
+* Audit
+
+---
+
+# 11. Database Design
+
+Generate:
+
+## Entities
+
+For each entity:
+
+* Table Name
+* Fields
+* Relationships
+
+Example:
+
+Users
+Travel Requests
+Approvals
+Expense Claims
+Expenses
+Reimbursements
+Policies
+Notifications
+Audit Logs
+
+Include ER relationship descriptions.
+
+---
+
+# 12. API Requirements
+
+For every feature generate:
+
+| Endpoint | Method | Description | Request | Response |
+| -------- | ------ | ----------- | ------- | -------- |
+
+Include:
+
+### Authentication APIs
+
+### Travel APIs
+
+### Approval APIs
+
+### Expense APIs
+
+### Reimbursement APIs
+
+### Dashboard APIs
+
+### Reporting APIs
+
+### Notification APIs
+
+---
+
+# 13. Third Party Integrations
+
+Generate requirements for:
+
+* HRMS
+* ERP
+* SSO
+* Email Service
+* SMS Service
+* Push Notifications
+* Analytics Platform
+
+For each integration provide:
+
+* Purpose
+* Data Flow
+* Failure Handling
+
+---
+
+# 14. User Stories
+
+Format:
+
+As a [user]
+
+I want [goal]
+
+So that [benefit]
+
+Include:
+
+* Priority
+* KPI Mapping
+
+---
+
+# 15. Acceptance Criteria
+
+Generate Gherkin scenarios.
+
+Given
+
+When
+
+Then
+
+Cover:
+
+* Happy Paths
+* Validation Cases
+* Failure Cases
+* Edge Cases
+
+---
+
+# 16. Non Functional Requirements
+
+## Performance
+
+## Security
+
+## Scalability
+
+## Reliability
+
+## Accessibility
+
+## Availability
+
+## Compliance
+
+## Auditability
+
+## Observability
+
+Define measurable targets.
+
+---
+
+# 17. Security Requirements
+
+Include:
+
+* JWT Authentication
+* RBAC
+* API Security
+* Encryption At Rest
+* Encryption In Transit
+* Secure File Uploads
+* Audit Logging
+* OWASP Protection
+
+---
+
+# 18. Analytics & KPI Tracking
+
+Generate event tracking matrix:
+
+| Event | Trigger | KPI |
+| ----- | ------- | --- |
+
+Examples:
+
+* Travel Submitted
+* Travel Approved
+* Expense Submitted
+* Expense Approved
+* Reimbursement Completed
+
+---
+
+# 19. Testing Requirements
+
+Generate:
+
+## Unit Tests
+
+Flutter
+
+Node.js
+
+## Widget Tests
+
+## Integration Tests
+
+## API Tests
+
+## End-to-End Tests
+
+## Performance Tests
+
+## Security Tests
+
+For each module provide:
+
+* Test Scenarios
+* Coverage Targets
+
+Target:
+
+* Unit Coverage ≥ 80%
+
+---
+
+# 20. DevOps Requirements
+
+Generate:
+
+## CI/CD Pipeline
+
+Flutter
+
+Node.js
+
+## Environment Strategy
+
+* Dev
+* QA
+* UAT
+* Production
+
+## Monitoring
+
+* Crash Reporting
+* Logging
+* Metrics
+
+## Backup Strategy
+
+## Rollback Strategy
+
+---
+
+# 21. Release Planning
+
+Generate:
+
+## MVP
+
+Features
+
+KPIs Impacted
+
+## Phase 2
+
+## Phase 3
+
+---
+
+# 22. KPI Traceability Matrix
+
+Generate:
+
+KPI → Goal → Feature → API → User Story → Test Case → Success Metric
+
+Every KPI must be mapped.
+
+---
+
+# 23. Open Questions
+
+List:
+
+* Missing Requirements
+* Assumptions
+* Integration Clarifications
+* Technical Risks
+* Business Decisions Pending
+
+# Output Requirements
+
+1. Create an implementation-ready PRD.
+2. Include Flutter architecture decisions.
+3. Include Node.js backend architecture decisions.
+4. Include APIs and database design.
+5. Include testing requirements.
+6. Include security requirements.
+7. Include DevOps requirements.
+8. Ensure complete KPI traceability.
+9. Use tables wherever possible.
+10. Generate enough detail for direct engineering execution.
+
+# Input
+
+Analyze the attached KPI document and generate the complete Technical PRD.
 
 
-## Output
+## Outout
 
-[Click here to view the PDF] [Product Requirements Document.pdf](https://github.com/user-attachments/files/28535638/Product.Requirements.Document.pdf)
+# Technical Product Requirements Document (PRD)
 
-Based on the KPI document you provided, below is a structured PRD tailored for a Flutter-based Enterprise Travel & Expense Management System.
-
-# Product Requirements Document (PRD)
-
-# Enterprise Employee Travel & Expense Management System
-
-Version: 1.0
-Document Owner: Product Management Team
-Target Platform: Flutter (iOS, Android, Web)
-Organization Size: 10,000+ Employees
+Version: 2.0
+Platforms: Flutter (iOS, Android, Web), Node.js Backend, PostgreSQL, Redis, Cloud
 
 ---
 
 # 1. Executive Summary
 
 ## Product Overview
-
-The Enterprise Travel & Expense Management System is a centralized digital platform that automates employee travel requests, approval workflows, expense submissions, reimbursements, compliance validation, and reporting.
-
-The solution replaces manual processes currently managed through emails, Excel sheets, phone calls, and paper documentation.
+Centralized platform for travel requests, approvals, expense claims, reimbursements, reporting, compliance, and audit management.
 
 ## Business Context
+Current processes rely on emails, Excel sheets, phone calls, and paper documents causing delays and compliance risks.
 
-The organization manages thousands of business trips annually across multiple locations. Existing manual workflows cause delays, poor visibility, compliance risks, and increased operational costs.
-
-## Vision Statement
-
-Create a scalable, compliant, and highly automated travel and expense ecosystem that enables employees to request travel, submit expenses, and receive reimbursements seamlessly while providing management with complete visibility and control.
+## Product Vision
+Build a scalable travel and expense ecosystem supporting 10,000+ employees.
 
 ## Expected Business Impact
-
-| Area                  | Expected Impact   |
-| --------------------- | ----------------- |
-| Approval Time         | 80% Reduction     |
-| Reimbursement Time    | 80% Reduction     |
-| Compliance Rate       | Increase to 98%   |
-| Manual Effort         | Reduce by 90%     |
-| Employee Satisfaction | Increase to 4.5/5 |
-| Operational Cost      | Reduce by 50–70%  |
+- Approval Time: 5 days → <1 day
+- Reimbursement Time: 15 days → <3 days
+- Compliance: 70% → 98%
+- Manual Intervention: 75% → <10%
+- Adoption: >90%
 
 ---
 
 # 2. Problem Statement
 
 ## Existing Challenges
+- Manual approvals
+- No workflow visibility
+- Duplicate data entry
+- Compliance violations
+- Audit difficulties
 
-* Manual travel approval process
-* Email-based communication
-* Spreadsheet dependency
-* Lack of audit trail
-* Delayed reimbursements
-* Poor reporting capabilities
-* Policy enforcement challenges
-
-## User Pain Points
-
-### Employees
-
-* Slow approvals
-* Reimbursement delays
-* Lack of request visibility
-* Repetitive data entry
-
-### Managers
-
-* Approval bottlenecks
-* Missing information
-* Lack of real-time dashboards
-
-### Finance Team
-
-* Manual verification effort
-* Fraud risk
-* Compliance validation effort
-
-## Business Impact
-
-* Increased operational costs
-* Reduced employee productivity
-* Poor spend visibility
-* Compliance risks
-* Audit challenges
-
-## Opportunity Statement
-
-Digitize and automate the end-to-end travel and expense lifecycle to improve operational efficiency, employee satisfaction, compliance, and financial visibility.
+## Opportunity
+Automate end-to-end travel and expense lifecycle.
 
 ---
 
-# 3. Goals & Success Criteria
+# 3. Goals & KPI Mapping
 
-## Business Goals
-
-| Goal ID | Goal                            |
-| ------- | ------------------------------- |
-| BG-01   | Reduce approval turnaround time |
-| BG-02   | Improve reimbursement speed     |
-| BG-03   | Increase policy compliance      |
-| BG-04   | Reduce operational costs        |
-| BG-05   | Increase employee satisfaction  |
-
-## Product Goals
-
-| Goal ID | Goal                              |
-| ------- | --------------------------------- |
-| PG-01   | Automate travel workflow          |
-| PG-02   | Enable digital expense submission |
-| PG-03   | Real-time tracking                |
-| PG-04   | Automated policy validation       |
-| PG-05   | Advanced reporting & analytics    |
-
-## KPI Mapping
-
-| KPI                     | Target   |
-| ----------------------- | -------- |
-| Approval Time           | < 1 Day  |
-| Expense Processing Time | < 2 Days |
-| Reimbursement Time      | < 3 Days |
-| Compliance Rate         | 98%      |
-| System Adoption         | 90%      |
-| Manual Intervention     | <10%     |
-
-## Success Metrics
-
-* 90%+ active employee adoption
-* 95% approval SLA compliance
-* 98% expense accuracy
-* 70% reduction in support tickets
-* 90% automated workflow processing
+| Business Goal | Product Goal | KPI | Target |
+|--------------|-------------|------|---------|
+| Faster Approvals | Workflow Automation | Approval Time | <1 Day |
+| Faster Claims | Expense Automation | Claim Processing | <2 Days |
+| Faster Payments | ERP Integration | Reimbursement | <3 Days |
+| Compliance | Rule Engine | Compliance Rate | 98% |
+| Adoption | Mobile Experience | Adoption Rate | 90% |
 
 ---
 
-# 4. Stakeholder Analysis
+# 4. Stakeholders
 
-| Stakeholder          | Responsibility                 | Decision Maker |
-| -------------------- | ------------------------------ | -------------- |
-| Employees            | Submit requests & expenses     | No             |
-| Managers             | Travel approvals               | Yes            |
-| Finance Team         | Expense review & reimbursement | Yes            |
-| Compliance Team      | Policy governance              | Yes            |
-| HR Team              | Employee master data           | No             |
-| IT Team              | Security & integrations        | No             |
-| Product Owner        | Product roadmap                | Yes            |
-| Executive Leadership | Budget & governance            | Yes            |
-
----
-
-# 5. User Personas
-
-## Primary Users
-
-### Employee
-
-Needs:
-
-* Quick travel requests
-* Expense submission
-* Status tracking
-
-Motivations:
-
-* Faster approvals
-* Faster reimbursements
-
-Frustrations:
-
-* Manual paperwork
-* Delayed payments
-
-### Manager
-
-Needs:
-
-* Efficient approvals
-* Team visibility
-
-Motivations:
-
-* Faster decisions
-
-Frustrations:
-
-* Email overload
-
-## Secondary Users
-
-### Finance Executive
-
-Needs:
-
-* Validation
-* Reporting
-* Compliance
-
-### Compliance Officer
-
-Needs:
-
-* Audit trails
-* Policy monitoring
+| Stakeholder | Responsibility |
+|------------|----------------|
+| Employee | Travel & Expense Submission |
+| Manager | Approvals |
+| Finance | Claim Validation |
+| Travel Team | Travel Coordination |
+| Compliance | Policy Governance |
+| Admin | Configuration |
+| IT | Infrastructure |
 
 ---
 
-# 6. User Journey
+# 5. Product Scope
 
-## Current State
+## In Scope
+- Authentication
+- Travel Requests
+- Approvals
+- Expense Claims
+- Reimbursements
+- Notifications
+- Dashboard
+- Reports
+- Audit Logs
 
-Employee → Email Request → Manager Approval → Finance Review → Manual Processing → Reimbursement
-
-## Future State
-
-Employee App
-↓
-Travel Request
-↓
-Workflow Approval
-↓
-Booking & Expense Submission
-↓
-Policy Validation
-↓
-Finance Approval
-↓
-ERP Payment
-↓
-Reimbursement Tracking
-
-## Key Touchpoints
-
-* Login
-* Dashboard
-* Travel Request
-* Approval Center
-* Expense Submission
-* Reimbursement Tracking
-* Notifications
-* Reports
+## Future Scope
+- OCR Receipt Scanning
+- AI Fraud Detection
+- Travel Booking Integration
 
 ---
 
-# 7. Functional Requirements
+# 6. Functional Modules
 
-| ID     | Title                  | Description            | Priority | Business Justification | KPI               | API Required     |
-| ------ | ---------------------- | ---------------------- | -------- | ---------------------- | ----------------- | ---------------- |
-| FR-001 | Authentication         | SSO Login              | Must     | Secure access          | Adoption          | SSO API          |
-| FR-002 | Travel Request         | Submit travel requests | Must     | Reduce approval delays | Approval Time     | Travel API       |
-| FR-003 | Approval Workflow      | Multi-level approval   | Must     | SLA compliance         | SLA KPI           | Workflow API     |
-| FR-004 | Expense Submission     | Digital expense claims | Must     | Reduce manual effort   | Accuracy KPI      | Expense API      |
-| FR-005 | Receipt Upload         | Upload invoices        | Must     | Audit readiness        | Compliance KPI    | Storage API      |
-| FR-006 | Policy Validation      | Auto-check violations  | Must     | Compliance             | Compliance KPI    | Rules Engine API |
-| FR-007 | Reimbursement Tracking | Payment tracking       | Must     | Employee satisfaction  | Reimbursement KPI | ERP API          |
-| FR-008 | Push Notifications     | Alerts & reminders     | Should   | Faster actions         | Approval KPI      | Notification API |
-| FR-009 | Analytics Dashboard    | KPI reporting          | Should   | Visibility             | Adoption KPI      | Analytics API    |
-| FR-010 | Offline Support        | Offline expense draft  | Could    | Mobile usability       | Adoption KPI      | Local Storage    |
+## Authentication
+- SSO Login
+- JWT Authentication
+- RBAC
 
----
+## Travel
+- Create Request
+- Modify Request
+- Cancel Request
+- Track Status
 
-# 8. Feature Breakdown
+## Approval
+- Multi-level Approvals
+- SLA Monitoring
 
-## Travel Management
-
-Purpose:
-Manage business travel lifecycle.
-
-User Value:
-Easy travel requests.
-
-Business Value:
-Reduced approval delays.
-
-Dependencies:
-Workflow API
-
-## Expense Management
-
-Purpose:
-Digital expense processing.
-
-User Value:
-Quick claims.
-
-Business Value:
-Reduced operational cost.
-
-Dependencies:
-Finance API
-
-## Compliance Engine
-
-Purpose:
-Policy validation.
-
-User Value:
-Avoid rejection.
-
-Business Value:
-Increase compliance.
-
-Dependencies:
-Rules Engine
-
-## Analytics Dashboard
-
-Purpose:
-Business insights.
-
-User Value:
-Visibility.
-
-Business Value:
-Data-driven decisions.
-
-Dependencies:
-Analytics Platform
-
----
-
-# 9. User Stories
-
-### Travel Request
-
-As an employee
-
-I want to submit travel requests digitally
-
-So that approvals happen faster.
-
-### Expense Submission
-
-As an employee
-
-I want to upload expenses using my phone
-
-So that reimbursement is processed quickly.
-
-### Approval Workflow
-
-As a manager
-
-I want to approve requests from mobile
-
-So that employee travel is not delayed.
-
-### Finance Review
-
-As a finance executive
-
-I want policy violations flagged automatically
-
-So that manual verification is reduced.
-
----
-
-# 10. Acceptance Criteria
-
-## Travel Request
-
-Given an authenticated employee
-
-When travel details are submitted
-
-Then the request should be routed to the correct approver.
-
-## Expense Submission
-
-Given a completed trip
-
-When receipts are uploaded
-
-Then an expense claim should be created successfully.
-
-## Approval Workflow
-
-Given a pending request
-
-When manager approves
-
-Then workflow should move to the next approval stage.
+## Expense
+- Expense Submission
+- Receipt Upload
+- Policy Validation
 
 ## Reimbursement
-
-Given an approved claim
-
-When payment is processed
-
-Then reimbursement status should update automatically.
+- ERP Payment Integration
+- Status Tracking
 
 ---
 
-# 11. Non-Functional Requirements
+# 7. Flutter Architecture
 
-## Performance
+## Architecture
+- Feature First
+- Clean Architecture
+- Repository Pattern
+- Riverpod
+- GetIt
 
-* App launch < 3 seconds
-* API response < 2 seconds
-* Dashboard load < 5 seconds
+## Folder Structure
 
-## Scalability
+lib/
+├── core/
+├── shared/
+├── features/
+│   ├── auth/
+│   ├── travel/
+│   ├── approval/
+│   ├── expense/
+│   ├── reimbursement/
+│   ├── dashboard/
 
-* Support 10,000+ employees
-* Support 100,000+ transactions/month
+## Offline Support
+- Hive Cache
+- Draft Expense Storage
+- Retry Sync
 
-## Security
-
-* SSO Authentication
-* Role-based access control
-* Data encryption
-* Secure API communication
-
-## Accessibility
-
-* WCAG Compliance
-* Screen Reader Support
-* Dynamic Text Support
-
-## Reliability
-
-* 99.9% uptime
-* Auto-retry mechanisms
-
-## Compliance
-
-* Corporate Travel Policies
-* Financial Audit Standards
-* Data Protection Regulations
+## Analytics Events
+- Travel Submitted
+- Travel Approved
+- Expense Submitted
+- Expense Approved
+- Reimbursement Completed
 
 ---
 
-# 12. Technical Considerations
+# 8. Node.js Backend Architecture
 
-## Flutter Architecture
+## Recommended Architecture
 
-* Clean Architecture
-* Feature-first Modularization
-* Repository Pattern
+Phase 1:
+Modular Monolith
 
-## State Management
+Reason:
+- Faster Development
+- Lower Operational Cost
+- Easier Deployment
 
-* Riverpod
+Phase 2:
+Microservice Extraction
 
-## Dependency Injection
+## Tech Stack
 
-* GetIt
+- Node.js
+- NestJS
+- PostgreSQL
+- Redis
+- BullMQ
+- Docker
+- Kubernetes
 
-## API Requirements
+## Backend Structure
 
-* REST APIs
-* OAuth2 Authentication
-* Pagination
-* File Upload APIs
-
-## Third-Party Integrations
-
-* HRMS
-* ERP
-* SSO Provider
-* Push Notification Service
-* Analytics Platform
-
-## Data Requirements
-
-* Employee Profiles
-* Travel Requests
-* Expense Claims
-* Approval History
-* Audit Logs
-
-## Analytics Requirements
-
-* Funnel Tracking
-* Approval SLA Tracking
-* Expense Processing Metrics
-* Adoption Metrics
+src/
+├── modules/
+│   ├── auth/
+│   ├── users/
+│   ├── travel/
+│   ├── approvals/
+│   ├── expenses/
+│   ├── reimbursements/
+│   ├── notifications/
+│   ├── reporting/
+│   └── audit/
+├── shared/
+├── middleware/
+├── config/
+├── jobs/
+└── integrations/
 
 ---
 
-# 13. Risks & Constraints
+# 9. Backend Modules
 
-## Business Risks
+## Auth Module
+Responsibilities:
+- SSO
+- JWT
+- RBAC
 
-* Low user adoption
-* Policy change impacts
-* Process resistance
+APIs:
+- POST /auth/login
+- POST /auth/refresh
+- POST /auth/logout
 
-## Technical Risks
+## Travel Module
 
-* ERP integration complexity
-* Legacy system dependencies
-* Data migration issues
+Responsibilities:
+- Travel Lifecycle
 
-## Assumptions
+APIs:
+- POST /travel
+- GET /travel/:id
+- PUT /travel/:id
+- DELETE /travel/:id
 
-* APIs are available
-* Travel policies are finalized
-* Employees have mobile access
+## Approval Module
 
-## Dependencies
+Responsibilities:
+- Workflow Management
 
-* HRMS Integration
-* ERP Integration
-* Notification Service
-* Identity Provider
+APIs:
+- POST /approvals/:id/approve
+- POST /approvals/:id/reject
+
+## Expense Module
+
+Responsibilities:
+- Claims
+- Receipts
+- Validation
+
+APIs:
+- POST /expenses
+- POST /expenses/upload
+
+## Reimbursement Module
+
+Responsibilities:
+- ERP Sync
+- Payment Tracking
+
+APIs:
+- GET /reimbursements
 
 ---
 
-# 14. Release Planning
+# 10. Database Design
 
-## MVP Scope
+## Users
+- id
+- employee_code
+- email
+- role_id
+- manager_id
 
-* Login
-* Travel Request
-* Approval Workflow
-* Expense Submission
-* Receipt Upload
-* Reimbursement Tracking
-* Notifications
+## TravelRequests
+- id
+- employee_id
+- purpose
+- start_date
+- end_date
+- status
+
+## Approvals
+- id
+- request_id
+- approver_id
+- decision
+
+## ExpenseClaims
+- id
+- employee_id
+- claim_amount
+- status
+
+## Expenses
+- id
+- claim_id
+- category
+- amount
+
+## Reimbursements
+- id
+- claim_id
+- payment_reference
+- payment_status
+
+## Notifications
+- id
+- user_id
+- type
+
+## AuditLogs
+- id
+- entity
+- action
+
+---
+
+# 11. Workflow State Machine
+
+Travel Request
+
+Draft
+→ Submitted
+→ Manager Approved
+→ Travel Team Approved
+→ Booked
+→ Travel Completed
+→ Expense Submitted
+→ Expense Approved
+→ Reimbursed
+
+---
+
+# 12. Business Rules
+
+BR-001 Travel request before 7 days
+BR-002 International travel requires VP approval
+BR-003 Receipt mandatory above ₹500
+BR-004 Claim submission within 30 days
+BR-005 Duplicate receipts not allowed
+
+---
+
+# 13. Role Permission Matrix
+
+Employee:
+- Create Travel
+- Submit Expense
+
+Manager:
+- Approve Travel
+
+Finance:
+- Approve Expense
+
+Admin:
+- Manage Policies
+
+---
+
+# 14. Security Requirements
+
+- JWT Authentication
+- OAuth2 SSO
+- RBAC
+- HTTPS
+- Encryption at Rest
+- Encryption in Transit
+- OWASP Top 10 Protection
+- Audit Logging
+
+---
+
+# 15. API Standards
+
+Success Response
+
+{
+  "success": true,
+  "data": {}
+}
+
+Error Response
+
+{
+  "success": false,
+  "errorCode": "VALIDATION_ERROR"
+}
+
+---
+
+# 16. Third Party Integrations
+
+## HRMS
+Purpose:
+Employee Master Sync
+
+## ERP
+Purpose:
+Reimbursements
+
+## SSO
+Purpose:
+Authentication
+
+## Notification Service
+Purpose:
+Email, SMS, Push
+
+---
+
+# 17. Testing Requirements
+
+Coverage Target >= 80%
+
+## Flutter
+- Unit Tests
+- Widget Tests
+- Integration Tests
+
+## Backend
+- Unit Tests
+- API Tests
+- Integration Tests
+
+## Security Testing
+- Penetration Testing
+- OWASP Validation
+
+## Performance Testing
+- 500 Concurrent Users
+- API < 2 seconds
+
+---
+
+# 18. DevOps Requirements
+
+## Environments
+
+- Dev
+- QA
+- UAT
+- Production
+
+## CI/CD
+
+Flutter:
+- Build
+- Test
+- Deploy
+
+Backend:
+- Lint
+- Test
+- Docker Build
+- Deploy
+
+## Monitoring
+
+- Crashlytics
+- Grafana
+- Prometheus
+- ELK Stack
+
+## Backup
+
+- Daily DB Backup
+- Weekly Full Backup
+
+---
+
+# 19. Release Plan
+
+## MVP
+- Auth
+- Travel
+- Approval
+- Expense
+- Reimbursement
+- Notifications
 
 ## Phase 2
+- OCR
+- Advanced Reports
 
-* Advanced Analytics
-* OCR Receipt Scanning
-* Travel Booking Integration
-* Budget Controls
-
-## Future Enhancements
-
-* AI Expense Categorization
-* Fraud Detection
-* Predictive Travel Spend Analytics
-* Chatbot Support
+## Phase 3
+- AI Recommendations
+- Fraud Detection
 
 ---
 
-# 15. KPI Traceability Matrix
+# 20. KPI Traceability
 
-| KPI                | Product Goal        | Feature           | User Story            | Success Metric |
-| ------------------ | ------------------- | ----------------- | --------------------- | -------------- |
-| Approval Time      | Workflow Automation | Approval Workflow | Manager Approval      | <1 Day         |
-| Expense Processing | Digital Claims      | Expense Module    | Submit Expense        | <2 Days        |
-| Reimbursement Time | Faster Payments     | ERP Integration   | Track Reimbursement   | <3 Days        |
-| Compliance Rate    | Policy Enforcement  | Validation Engine | Auto Compliance Check | 98%            |
-| Adoption Rate      | User Experience     | Mobile App        | Daily Usage           | 90%            |
-| Satisfaction Score | Transparency        | Status Tracking   | Track Request         | 4.5/5          |
+Approval Time → Workflow → Approval API → Manager Story → SLA <1 Day
 
----
+Expense Processing → Expense Module → Expense API → Claim Story → <2 Days
 
-# 16. Open Questions
+Reimbursement Time → ERP Integration → Reimbursement API → Payment Story → <3 Days
 
-1. Will travel booking be included in MVP?
-2. Which ERP system is being used?
-3. What approval hierarchy rules exist?
-4. Are international travel policies supported?
-5. Is OCR required in Phase 1?
-6. What reimbursement payment methods are supported?
-7. Are offline capabilities mandatory?
-8. What reporting export formats are required?
-9. What retention period is required for audit records?
-10. Are contractor users included in scope?
+Compliance → Rule Engine → Validation API → Policy Story → 98%
+
+Adoption → Mobile App → Analytics Events → Employee Usage → 90%
 
 ---
 
-# PRD Approval Criteria
+# 21. Engineering Deliverables
 
-The project will be considered successful when:
+docs/
+├── KPI.md
+├── PRD.md
+├── Scope.md
+├── Architecture.md
+├── BackendDesign.md
+├── DatabaseDesign.md
+├── APISpecification.md
+├── TestStrategy.md
+├── TDD.md
+├── SprintPlan.md
+├── DeploymentGuide.md
+└── Runbook.md
 
-* 90% employee adoption achieved
-* Approval time reduced to <1 day
-* Reimbursement time reduced to <3 days
-* Compliance rate reaches 98%
-* Manual intervention drops below 10%
-* Employee satisfaction reaches 4.5/5
-
-This PRD is aligned with all KPIs, success metrics, risks, assumptions, and business objectives defined in the KPI document and is suitable for Flutter developers, architects, QA teams, designers, project managers, and stakeholders.
+This PRD preserves the original KPI objectives while adding complete Node.js backend architecture requirements, module boundaries, APIs, database entities, security, testing, and DevOps requirements.
