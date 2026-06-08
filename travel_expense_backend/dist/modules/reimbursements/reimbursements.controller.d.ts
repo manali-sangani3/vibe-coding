@@ -11,6 +11,14 @@ export declare class ReimbursementsController {
         success: boolean;
         data: import("./entities/reimbursement.entity").Reimbursement[];
     }>;
+    getPendingReimbursements(): Promise<{
+        success: boolean;
+        data: import("../expenses/entities/expense-claim.entity").ExpenseClaim[];
+    }>;
+    markAsPaid(req: any, claimId: string, paymentRef: string): Promise<{
+        success: boolean;
+        data: import("./entities/reimbursement.entity").Reimbursement;
+    }>;
     processErpPayout(apiKey: string, dto: PayoutCallbackDto): Promise<import("./entities/reimbursement.entity").Reimbursement>;
 }
 export {};

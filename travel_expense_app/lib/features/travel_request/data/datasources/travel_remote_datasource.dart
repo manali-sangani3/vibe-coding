@@ -23,7 +23,7 @@ class TravelRemoteDataSourceImpl implements TravelRemoteDataSource {
   @override
   Future<List<TravelRequestModel>> getTravelRequests() async {
     final response = await apiClient.get('/travel');
-    final dataList = response.data['data'] as List;
+    final dataList = (response.data['data'] as List?) ?? [];
     return dataList
         .map((json) => TravelRequestModel.fromJson(json as Map<String, dynamic>))
         .toList();

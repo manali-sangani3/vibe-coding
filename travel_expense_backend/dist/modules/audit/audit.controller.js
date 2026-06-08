@@ -30,8 +30,8 @@ let AuditController = class AuditController {
 exports.AuditController = AuditController;
 __decorate([
     (0, common_1.Get)(),
-    (0, roles_decorator_1.Roles)(user_entity_1.UserRole.COMPLIANCE, user_entity_1.UserRole.ADMIN),
-    (0, swagger_1.ApiOperation)({ summary: 'Get immutable audit logs trail (Compliance / Admin only)' }),
+    (0, roles_decorator_1.Roles)(user_entity_1.UserRole.COMPLIANCE, user_entity_1.UserRole.ADMIN, user_entity_1.UserRole.FINANCE),
+    (0, swagger_1.ApiOperation)({ summary: 'Get immutable audit logs trail (Compliance / Admin / Finance only)' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Audit trail returned successfully' }),
     (0, swagger_1.ApiResponse)({ status: 403, description: 'Forbidden access block' }),
     __metadata("design:type", Function),

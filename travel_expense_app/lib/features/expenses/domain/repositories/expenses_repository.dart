@@ -10,4 +10,6 @@ abstract class ExpensesRepository {
     required List<ExpenseItemEntity> items,
   });
   Future<Either<Failure, String>> uploadReceipt(String filePath, String fileName);
+  Future<Either<Failure, List<ExpenseClaimEntity>>> getPendingExpenseApprovals();
+  Future<Either<Failure, ExpenseClaimEntity>> managerApproveExpenseClaim(String claimId);
 }

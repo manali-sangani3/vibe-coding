@@ -41,6 +41,16 @@ let ReimbursementsService = class ReimbursementsService {
             order: { createdAt: 'DESC' },
         });
     }
+    async getPendingReimbursements() {
+        return this.claimRepository.find({
+            where: { status: expense_claim_entity_1.ClaimStatus.APPROVED },
+            relations: { travelRequest: true, user: true },
+            order: { createdAt: 'ASC' },
+        });
+    }
+    async markAsPaid(claimId, paymentRef) {
+        return this.processErpPayout('erp-mock-key', claimId, paymentRef, 'PAID');
+    }
     async processErpPayout(apiKey, claimId, paymentRef, status) {
         if (apiKey !== 'erp-mock-key') {
             throw new common_1.UnauthorizedException('Invalid ERP integration secret key.');

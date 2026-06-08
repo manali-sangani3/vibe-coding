@@ -115,7 +115,7 @@ class TravelRequestNotifier extends StateNotifier<TravelRequestState> {
 }
 
 final travelRequestNotifierProvider =
-    StateNotifierProvider<TravelRequestNotifier, TravelRequestState>((ref) {
+    StateNotifierProvider.autoDispose<TravelRequestNotifier, TravelRequestState>((ref) {
   return TravelRequestNotifier(
     getTravelRequestsUseCase: sl<GetTravelRequestsUseCase>(),
     submitTravelRequestUseCase: sl<SubmitTravelRequestUseCase>(),

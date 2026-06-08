@@ -210,9 +210,14 @@ class _ExpenseFormPageState extends ConsumerState<ExpenseFormPage> {
     final expensesState = ref.watch(expensesNotifierProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    // Filter for approved travel requests
+    // Filter for approved travel requests within the 30-day window
+    final now = DateTime.now();
     final approvedRequests = travelRequestsState.requests
-        .where((req) => req.status.toLowerCase() == 'approved')
+        .where((req) {
+          if (req.status.toLowerCase() != 'approved') return false;
+          final diffDays = now.difference(req.endDate).inDays;
+          return diffDays <= 30;
+        })
         .toList();
 
     ref.listen<ExpensesState>(expensesNotifierProvider, (previous, next) {

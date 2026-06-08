@@ -15,7 +15,7 @@ class ApprovalsRemoteDataSourceImpl implements ApprovalsRemoteDataSource {
   @override
   Future<List<ApprovalStageModel>> getPendingApprovals() async {
     final response = await apiClient.get('/approvals/pending');
-    final dataList = response.data['data'] as List;
+    final dataList = (response.data['data'] as List?) ?? [];
     return dataList
         .map((json) => ApprovalStageModel.fromJson(json as Map<String, dynamic>))
         .toList();

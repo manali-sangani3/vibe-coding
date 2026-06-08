@@ -143,7 +143,7 @@ class ExpensesNotifier extends StateNotifier<ExpensesState> {
 }
 
 final expensesNotifierProvider =
-    StateNotifierProvider<ExpensesNotifier, ExpensesState>((ref) {
+    StateNotifierProvider.autoDispose<ExpensesNotifier, ExpensesState>((ref) {
   return ExpensesNotifier(
     getExpenseClaimsUseCase: sl<GetExpenseClaimsUseCase>(),
     getExpenseClaimByIdUseCase: sl<GetExpenseClaimByIdUseCase>(),

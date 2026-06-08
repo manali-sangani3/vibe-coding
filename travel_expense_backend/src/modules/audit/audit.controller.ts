@@ -14,8 +14,8 @@ export class AuditController {
   constructor(private readonly auditService: AuditService) {}
 
   @Get()
-  @Roles(UserRole.COMPLIANCE, UserRole.ADMIN)
-  @ApiOperation({ summary: 'Get immutable audit logs trail (Compliance / Admin only)' })
+  @Roles(UserRole.COMPLIANCE, UserRole.ADMIN, UserRole.FINANCE)
+  @ApiOperation({ summary: 'Get immutable audit logs trail (Compliance / Admin / Finance only)' })
   @ApiResponse({ status: 200, description: 'Audit trail returned successfully' })
   @ApiResponse({ status: 403, description: 'Forbidden access block' })
   async getAuditLogs() {

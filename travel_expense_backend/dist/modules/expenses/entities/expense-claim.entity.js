@@ -18,6 +18,9 @@ var ClaimStatus;
 (function (ClaimStatus) {
     ClaimStatus["DRAFT"] = "draft";
     ClaimStatus["SUBMITTED"] = "submitted";
+    ClaimStatus["PENDING_MANAGER"] = "pending_manager";
+    ClaimStatus["PENDING_DEPT_HEAD"] = "pending_dept_head";
+    ClaimStatus["PENDING_FINANCE"] = "pending_finance";
     ClaimStatus["APPROVED"] = "approved";
     ClaimStatus["REJECTED"] = "rejected";
     ClaimStatus["REIMBURSED"] = "reimbursed";

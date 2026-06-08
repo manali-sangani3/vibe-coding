@@ -49,7 +49,7 @@ class ReimbursementsNotifier extends StateNotifier<ReimbursementsState> {
 }
 
 final reimbursementsNotifierProvider =
-    StateNotifierProvider<ReimbursementsNotifier, ReimbursementsState>((ref) {
+    StateNotifierProvider.autoDispose<ReimbursementsNotifier, ReimbursementsState>((ref) {
   return ReimbursementsNotifier(
     getReimbursementsUseCase: sl<GetReimbursementsUseCase>(),
   );

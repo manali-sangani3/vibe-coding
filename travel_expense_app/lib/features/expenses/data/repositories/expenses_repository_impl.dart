@@ -61,4 +61,24 @@ class ExpensesRepositoryImpl implements ExpensesRepository {
       return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ExpenseClaimEntity>>> getPendingExpenseApprovals() async {
+    try {
+      final list = await remoteDataSource.getPendingExpenseApprovals();
+      return Right(list);
+    } catch (e) {
+      return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ExpenseClaimEntity>> managerApproveExpenseClaim(String claimId) async {
+    try {
+      final claim = await remoteDataSource.managerApproveExpenseClaim(claimId);
+      return Right(claim);
+    } catch (e) {
+      return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
+    }
+  }
 }

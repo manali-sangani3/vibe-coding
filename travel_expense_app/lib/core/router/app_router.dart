@@ -10,7 +10,9 @@ import '../../features/approvals/presentation/pages/approvals_queue_page.dart';
 import '../../features/expenses/presentation/pages/expense_list_page.dart';
 import '../../features/expenses/presentation/pages/expense_form_page.dart';
 import '../../features/reimbursements/presentation/pages/reimbursements_history_page.dart';
-
+import '../../features/reimbursements/presentation/pages/finance_reimbursement_queue_page.dart';
+import '../../features/audit/presentation/pages/audit_logs_page.dart';
+import 'package:flutter/material.dart';
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authNotifierProvider);
 
@@ -68,6 +70,32 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/reimbursements',
         name: 'reimbursements',
         builder: (context, state) => const ReimbursementHistoryPage(),
+      ),
+      GoRoute(
+        path: '/finance-queue',
+        name: 'finance_queue',
+        builder: (context, state) => const FinanceReimbursementQueuePage(),
+      ),
+      GoRoute(
+        path: '/audit-logs',
+        name: 'audit_logs',
+        builder: (context, state) => const AuditLogsPage(),
+      ),
+      GoRoute(
+        path: '/compliance',
+        name: 'compliance',
+        builder: (context, state) => Scaffold(
+          appBar: AppBar(title: const Text('Compliance Policy')),
+          body: const Center(
+            child: Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Text(
+                'Enterprise Policies:\n\n1. Flights: Economy only for trips < 4 hours. Business allowed for Executives.\n2. Meals: Max ₹1,500/day for employees.\n3. Accommodation: Max ₹10,000/night.\n4. Receipts mandatory for all claims > ₹500.\n\nAll rules are enforced automatically by the Compliance Engine.',
+                style: TextStyle(fontSize: 16, height: 1.5),
+              ),
+            ),
+          ),
+        ),
       ),
     ],
     redirect: (context, state) {

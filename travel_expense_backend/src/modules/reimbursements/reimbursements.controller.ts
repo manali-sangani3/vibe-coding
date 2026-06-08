@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Headers, Req, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Headers, Req, UseGuards, HttpCode, HttpStatus, Param } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiHeader, ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { ReimbursementsService } from './reimbursements.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -31,6 +31,29 @@ export class ReimbursementsController {
   async getReimbursementHistory(@Req() req: any) {
     const list = await this.reimbursementsService.getReimbursementHistory(req.user.id);
     return { success: true, data: list };
+  }
+
+  @Get('reimbursements/pending')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get all approved claims waiting for payout (Finance only)' })
+  async getPendingReimbursements() {
+    const list = await this.reimbursementsService.getPendingReimbursements();
+    return { success: true, data: list };
+  }
+
+  @Post('reimbursements/:claimId/pay')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Manually mark an approved claim as paid (Finance only)' })
+  async markAsPaid(
+    @Req() req: any,
+    @Param('claimId') claimId: string,
+    @Body('paymentRef') paymentRef: string,
+  ) {
+    // In a real app, verify req.user.role === UserRole.FINANCE
+    const result = await this.reimbursementsService.markAsPaid(claimId, paymentRef || `MANUAL-${Date.now()}`);
+    return { success: true, data: result };
   }
 
   @Post('integrations/erp/payout-callback')

@@ -10,6 +10,8 @@ abstract class ExpensesRemoteDataSource {
     required List<Map<String, dynamic>> items,
   });
   Future<String> uploadReceipt(String filePath, String fileName);
+  Future<List<ExpenseClaimModel>> getPendingExpenseApprovals();
+  Future<ExpenseClaimModel> managerApproveExpenseClaim(String claimId);
 }
 
 class ExpensesRemoteDataSourceImpl implements ExpensesRemoteDataSource {
@@ -20,7 +22,7 @@ class ExpensesRemoteDataSourceImpl implements ExpensesRemoteDataSource {
   @override
   Future<List<ExpenseClaimModel>> getExpenseClaims() async {
     final response = await apiClient.get('/expenses');
-    final dataList = response.data['data'] as List;
+    final dataList = (response.data['data'] as List?) ?? [];
     return dataList
         .map((json) => ExpenseClaimModel.fromJson(json as Map<String, dynamic>))
         .toList();
@@ -61,5 +63,20 @@ class ExpensesRemoteDataSourceImpl implements ExpensesRemoteDataSource {
       data: formData,
     );
     return response.data['receiptUrl'] as String;
+  }
+
+  @override
+  Future<List<ExpenseClaimModel>> getPendingExpenseApprovals() async {
+    final response = await apiClient.get('/expenses/pending-approvals');
+    final dataList = (response.data['data'] as List?) ?? [];
+    return dataList
+        .map((json) => ExpenseClaimModel.fromJson(json as Map<String, dynamic>))
+        .toList();
+  }
+
+  @override
+  Future<ExpenseClaimModel> managerApproveExpenseClaim(String claimId) async {
+    final response = await apiClient.post('/expenses/$claimId/manager-approve');
+    return ExpenseClaimModel.fromJson(response.data['data'] as Map<String, dynamic>);
   }
 }

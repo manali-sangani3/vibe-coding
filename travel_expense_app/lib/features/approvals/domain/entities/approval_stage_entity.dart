@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import '../../../travel_request/domain/entities/travel_request_entity.dart';
 import '../../../auth/domain/entities/user_entity.dart';
 
-class ApprovalStageEntity {
+class ApprovalStageEntity extends Equatable {
   final String id;
   final String requestId;
   final TravelRequestEntity? travelRequest;
@@ -25,25 +26,15 @@ class ApprovalStageEntity {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ApprovalStageEntity &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          requestId == other.requestId &&
-          approverId == other.approverId &&
-          level == other.level &&
-          status == other.status &&
-          comments == other.comments &&
-          createdAt == other.createdAt;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      requestId.hashCode ^
-      approverId.hashCode ^
-      level.hashCode ^
-      status.hashCode ^
-      comments.hashCode ^
-      createdAt.hashCode;
+  List<Object?> get props => [
+        id,
+        requestId,
+        travelRequest,
+        approverId,
+        approver,
+        level,
+        status,
+        comments,
+        createdAt,
+      ];
 }

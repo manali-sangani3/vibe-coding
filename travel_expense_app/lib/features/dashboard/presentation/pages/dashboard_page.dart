@@ -15,11 +15,7 @@ class DashboardPage extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     if (user == null) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
@@ -46,10 +42,7 @@ class DashboardPage extends ConsumerWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 gradient: const LinearGradient(
-                  colors: [
-                    AppColors.primary,
-                    AppColors.secondary,
-                  ],
+                  colors: [AppColors.primary, AppColors.secondary],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -68,15 +61,17 @@ class DashboardPage extends ConsumerWidget {
                     backgroundColor: Colors.white,
                     child: ClipOval(
                       child: Image.network(
-                        user.avatarUrl ?? 'https://api.dicebear.com/7.x/adventurer/svg?seed=avatar',
+                        user.avatarUrl ??
+                            'https://api.dicebear.com/7.x/adventurer/svg?seed=avatar',
                         width: 72,
                         height: 72,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => const Icon(
-                          Icons.person,
-                          size: 36,
-                          color: AppColors.primary,
-                        ),
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(
+                              Icons.person,
+                              size: 36,
+                              color: AppColors.primary,
+                            ),
                       ),
                     ),
                   ),
@@ -87,12 +82,11 @@ class DashboardPage extends ConsumerWidget {
                       children: [
                         Text(
                           'Welcome back,',
-                          style: AppTypography.bodySmall(Colors.white.withValues(alpha: 0.8)),
+                          style: AppTypography.bodySmall(
+                            Colors.white.withValues(alpha: 0.8),
+                          ),
                         ),
-                        Text(
-                          user.name,
-                          style: AppTypography.h2(Colors.white),
-                        ),
+                        Text(user.name, style: AppTypography.h2(Colors.white)),
                         const SizedBox(height: 4),
                         Row(
                           children: [
@@ -112,9 +106,15 @@ class DashboardPage extends ConsumerWidget {
                             ),
                             if (user.department != null) ...[
                               const SizedBox(width: 8),
-                              Text(
-                                user.department!,
-                                style: AppTypography.bodySmall(Colors.white.withValues(alpha: 0.9)),
+                              Flexible(
+                                child: Text(
+                                  user.department!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTypography.bodySmall(
+                                    Colors.white.withValues(alpha: 0.9),
+                                  ),
+                                ),
                               ),
                             ],
                           ],
@@ -135,7 +135,7 @@ class DashboardPage extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 16),
-            
+
             // Grid of Modules
             GridView.count(
               crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
@@ -165,13 +165,25 @@ class DashboardPage extends ConsumerWidget {
                   icon: Icons.payments_rounded,
                   color: AppColors.success,
                 ),
-                if (user.role == 'Manager' || user.role == 'Admin' || user.role.contains('Executive')) ...[
+                if (user.role.toUpperCase() == 'MANAGER' ||
+                    user.role.toUpperCase() == 'ADMIN' ||
+                    user.role.toUpperCase().contains('EXECUTIVE')) ...[
                   _buildActionCard(
                     context,
                     title: 'Approvals Queue',
                     subtitle: 'Review Pending Requests',
                     icon: Icons.fact_check_rounded,
                     color: AppColors.warning,
+                  ),
+                ],
+                if (user.role.toUpperCase().contains('FINANCE') ||
+                    user.role.toUpperCase() == 'ADMIN') ...[
+                  _buildActionCard(
+                    context,
+                    title: 'Finance Queue',
+                    subtitle: 'Process Payouts',
+                    icon: Icons.account_balance_wallet_rounded,
+                    color: AppColors.success,
                   ),
                 ],
                 _buildActionCard(
@@ -181,13 +193,17 @@ class DashboardPage extends ConsumerWidget {
                   icon: Icons.gavel_rounded,
                   color: AppColors.accent,
                 ),
-                _buildActionCard(
-                  context,
-                  title: 'Audit Trails',
-                  subtitle: 'View Activity logs',
-                  icon: Icons.history_edu_rounded,
-                  color: Colors.blueGrey,
-                ),
+                if (user.role.toUpperCase().contains('COMPLIANCE') ||
+                    user.role.toUpperCase() == 'ADMIN' ||
+                    user.role.toUpperCase().contains('FINANCE')) ...[
+                  _buildActionCard(
+                    context,
+                    title: 'Audit Trails',
+                    subtitle: 'View Activity logs',
+                    icon: Icons.history_edu_rounded,
+                    color: Colors.blueGrey,
+                  ),
+                ],
               ],
             ),
           ],
@@ -215,6 +231,12 @@ class DashboardPage extends ConsumerWidget {
             context.push('/reimbursements');
           } else if (title == 'Approvals Queue') {
             context.push('/approvals');
+          } else if (title == 'Finance Queue') {
+            context.push('/finance-queue');
+          } else if (title == 'Compliance Policy') {
+            context.push('/compliance');
+          } else if (title == 'Audit Trails') {
+            context.push('/audit-logs');
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -256,7 +278,9 @@ class DashboardPage extends ConsumerWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: AppTypography.bodySmall(
-                      isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                      isDark
+                          ? AppColors.textSecondaryDark
+                          : AppColors.textSecondaryLight,
                     ),
                   ),
                 ],

@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import '../../../expenses/domain/entities/expense_claim_entity.dart';
 
-class ReimbursementEntity {
+class ReimbursementEntity extends Equatable {
   final String id;
   final String claimId;
   final ExpenseClaimEntity? claim;
@@ -20,23 +21,5 @@ class ReimbursementEntity {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ReimbursementEntity &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          claimId == other.claimId &&
-          paymentReference == other.paymentReference &&
-          status == other.status &&
-          paidAt == other.paidAt &&
-          createdAt == other.createdAt;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      claimId.hashCode ^
-      paymentReference.hashCode ^
-      status.hashCode ^
-      paidAt.hashCode ^
-      createdAt.hashCode;
+  List<Object?> get props => [id, claimId, claim, paymentReference, status, paidAt, createdAt];
 }

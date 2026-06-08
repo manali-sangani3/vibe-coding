@@ -32,11 +32,20 @@ import '../../features/expenses/domain/usecases/get_expense_claims_usecase.dart'
 import '../../features/expenses/domain/usecases/get_expense_claim_by_id_usecase.dart';
 import '../../features/expenses/domain/usecases/submit_expense_claim_usecase.dart';
 import '../../features/expenses/domain/usecases/upload_receipt_usecase.dart';
+import '../../features/expenses/domain/usecases/get_pending_expense_approvals_usecase.dart';
+import '../../features/expenses/domain/usecases/manager_approve_expense_claim_usecase.dart';
 
 import '../../features/reimbursements/data/datasources/reimbursements_remote_datasource.dart';
 import '../../features/reimbursements/data/repositories/reimbursements_repository_impl.dart';
 import '../../features/reimbursements/domain/repositories/reimbursements_repository.dart';
 import '../../features/reimbursements/domain/usecases/get_reimbursements_usecase.dart';
+import '../../features/reimbursements/domain/usecases/get_pending_reimbursements_usecase.dart';
+import '../../features/reimbursements/domain/usecases/mark_reimbursement_as_paid_usecase.dart';
+
+import '../../features/audit/data/datasources/audit_remote_datasource.dart';
+import '../../features/audit/data/repositories/audit_repository_impl.dart';
+import '../../features/audit/domain/repositories/audit_repository.dart';
+import '../../features/audit/domain/usecases/get_audit_logs_usecase.dart';
 
 final sl = GetIt.instance;
 
@@ -104,6 +113,8 @@ Future<void> init() async {
   sl.registerLazySingleton<GetExpenseClaimByIdUseCase>(() => GetExpenseClaimByIdUseCase(sl()));
   sl.registerLazySingleton<SubmitExpenseClaimUseCase>(() => SubmitExpenseClaimUseCase(sl()));
   sl.registerLazySingleton<UploadReceiptUseCase>(() => UploadReceiptUseCase(sl()));
+  sl.registerLazySingleton<GetPendingExpenseApprovalsUseCase>(() => GetPendingExpenseApprovalsUseCase(sl()));
+  sl.registerLazySingleton<ManagerApproveExpenseClaimUseCase>(() => ManagerApproveExpenseClaimUseCase(sl()));
 
   // Features - Reimbursements
   // Data sources
@@ -114,4 +125,16 @@ Future<void> init() async {
 
   // Use cases
   sl.registerLazySingleton<GetReimbursementsUseCase>(() => GetReimbursementsUseCase(sl()));
+  sl.registerLazySingleton<GetPendingReimbursementsUseCase>(() => GetPendingReimbursementsUseCase(sl()));
+  sl.registerLazySingleton<MarkReimbursementAsPaidUseCase>(() => MarkReimbursementAsPaidUseCase(sl()));
+
+  // Features - Audit
+  // Data sources
+  sl.registerLazySingleton<AuditRemoteDataSource>(() => AuditRemoteDataSourceImpl(sl()));
+
+  // Repositories
+  sl.registerLazySingleton<AuditRepository>(() => AuditRepositoryImpl(remoteDataSource: sl()));
+
+  // Use cases
+  sl.registerLazySingleton<GetAuditLogsUseCase>(() => GetAuditLogsUseCase(sl()));
 }

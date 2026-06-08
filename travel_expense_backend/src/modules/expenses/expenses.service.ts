@@ -7,6 +7,7 @@ import { TravelRequest, TravelStatus } from '../travel/entities/travel-request.e
 import { AuditLog } from '../audit/entities/audit-log.entity';
 import { CreateExpenseClaimDto } from './dto/create-expense.dto';
 import { NotificationService } from '../notifications/notification.service';
+import { ComplianceService } from '../compliance/compliance.service';
 import { User, UserRole } from '../users/entities/user.entity';
 
 @Injectable()
@@ -23,6 +24,7 @@ export class ExpensesService {
     @InjectRepository(AuditLog)
     private readonly auditRepository: Repository<AuditLog>,
     private readonly notificationService: NotificationService,
+    private readonly complianceService: ComplianceService,
   ) {}
 
   async submitExpenseClaim(userId: string, dto: CreateExpenseClaimDto) {
@@ -49,6 +51,11 @@ export class ExpensesService {
       }
     }
 
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException('User not found.');
+    }
+
     // 2. Validate line items against budget caps & receipt thresholds
     let totalClaimAmount = 0.0;
     const itemsToSave: ExpenseItem[] = [];
@@ -59,17 +66,9 @@ export class ExpensesService {
         throw new BadRequestException(`Receipt attachment is mandatory for claims above ₹500 (Category: ${itemDto.category}).`);
       }
 
-      // Constraint 2: Policy Engine Category Caps
-      const categoryLower = itemDto.category.toLowerCase();
-      if (categoryLower.includes('meal') && itemDto.amount > 1500.0) {
-        throw new BadRequestException('Meals category claim exceeds individual limit of ₹1,500.');
-      }
-      if (categoryLower.includes('transport') && itemDto.amount > 10000.0) {
-        throw new BadRequestException('Transport category claim exceeds individual limit of ₹10,000.');
-      }
-      if (categoryLower.includes('accommodation') && itemDto.amount > 15000.0) {
-        throw new BadRequestException('Accommodation category claim exceeds individual limit of ₹15,000.');
-      }
+      // Constraint 2: Policy Engine Category Caps via ComplianceService
+      const hasReceipt = !!itemDto.receiptUrl && itemDto.receiptUrl.trim() !== '';
+      this.complianceService.validateExpenseItem(user.role, itemDto.category, itemDto.amount, hasReceipt);
 
       // Constraint 3: Duplicate Receipt Hash check
       if (itemDto.receiptUrl) {
@@ -96,34 +95,52 @@ export class ExpensesService {
       itemsToSave.push(item);
     }
 
-    // 3. Create Claim in DB
+    // 3. Determine initial status based on user role
+    let initialStatus = ClaimStatus.PENDING_MANAGER;
+    if (user.role === UserRole.MANAGER) {
+      initialStatus = ClaimStatus.PENDING_DEPT_HEAD;
+    } else if (user.role === UserRole.FINANCE || user.role === UserRole.COMPLIANCE || user.role === UserRole.ADMIN) {
+      initialStatus = ClaimStatus.PENDING_FINANCE;
+    }
+
+    // 4. Create Claim in DB
     const claim = this.claimRepository.create({
       travelRequestId: dto.travelRequestId,
       claimAmount: totalClaimAmount,
-      status: ClaimStatus.SUBMITTED,
+      status: initialStatus,
       userId,
       submittedAt: now,
       items: itemsToSave,
     });
     await this.claimRepository.save(claim);
 
-    // 4. Update Travel Request State machine to Claim Submitted
+    // 5. Update Travel Request State machine to Claim Submitted
     if (travelRequest) {
       travelRequest.status = TravelStatus.CLAIM_SUBMITTED;
       await this.travelRepository.save(travelRequest);
     }
 
-    // 5. Notify Finance Review Team
-    const financeReviewer = await this.userRepository.findOne({ where: { role: UserRole.FINANCE } });
-    const notifyId = financeReviewer ? financeReviewer.id : 'usr-finance-001';
-    await this.notificationService.sendNotification(
-      notifyId,
-      'New Expense Claim Submitted',
-      `Expense Claim for ₹${totalClaimAmount} submitted by user. Action required.`,
-      'push',
-    );
+    // 6. Notify next approver
+    if (initialStatus === ClaimStatus.PENDING_FINANCE) {
+      const financeReviewer = await this.userRepository.findOne({ where: { role: UserRole.FINANCE } });
+      const notifyId = financeReviewer ? financeReviewer.id : 'usr-finance-001';
+      await this.notificationService.sendNotification(
+        notifyId,
+        'New Expense Claim Submitted',
+        `Expense Claim for ₹${totalClaimAmount} requires Finance approval.`,
+        'push',
+      );
+    } else {
+      const notifyId = user.managerId ? user.managerId : 'usr-manager-l1-001';
+      await this.notificationService.sendNotification(
+        notifyId,
+        'New Expense Claim Submitted',
+        `Expense Claim for ₹${totalClaimAmount} requires your approval.`,
+        'push',
+      );
+    }
 
-    // 6. Write to WORM Audit Log
+    // 7. Write to WORM Audit Log
     const audit = this.auditRepository.create({
       userId,
       action: 'EXPENSE_SUBMIT',
@@ -142,6 +159,32 @@ export class ExpensesService {
       relations: { items: true, travelRequest: true },
       order: { createdAt: 'DESC' },
     });
+  }
+
+  async getPendingExpenseApprovals(userId: string) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) throw new NotFoundException('User not found');
+    
+    let targetStatus = ClaimStatus.PENDING_MANAGER;
+    if (user.role === UserRole.MANAGER || user.role === UserRole.ADMIN) {
+      // In a real app we'd fetch PENDING_MANAGER or PENDING_DEPT_HEAD depending on exact hierarchy.
+      // We will fetch both here for simplicity of prototype
+      return this.claimRepository.find({
+        where: [
+          { status: ClaimStatus.PENDING_MANAGER },
+          { status: ClaimStatus.PENDING_DEPT_HEAD }
+        ],
+        relations: { items: true, travelRequest: true, user: true },
+        order: { createdAt: 'ASC' },
+      });
+    } else if (user.role === UserRole.FINANCE) {
+      return this.claimRepository.find({
+        where: { status: ClaimStatus.PENDING_FINANCE },
+        relations: { items: true, travelRequest: true, user: true },
+        order: { createdAt: 'ASC' },
+      });
+    }
+    return [];
   }
 
   async getExpenseClaimById(userId: string, id: string) {
@@ -163,6 +206,73 @@ export class ExpensesService {
     ) {
       throw new BadRequestException('Unauthorized resource access.');
     }
+
+    return claim;
+  }
+
+  async managerApproveExpenseClaim(userId: string, claimId: string) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user || (user.role !== UserRole.MANAGER && user.role !== UserRole.ADMIN)) {
+      throw new BadRequestException('Only Managers can perform this approval.');
+    }
+
+    const claim = await this.claimRepository.findOne({ where: { id: claimId }, relations: { travelRequest: true, user: true } });
+    if (!claim) {
+      throw new NotFoundException('Expense claim not found.');
+    }
+    
+    if (claim.status === ClaimStatus.PENDING_MANAGER) {
+      claim.status = ClaimStatus.PENDING_FINANCE;
+    } else if (claim.status === ClaimStatus.PENDING_DEPT_HEAD) {
+      claim.status = ClaimStatus.PENDING_FINANCE;
+    } else {
+      throw new BadRequestException(`Claim cannot be approved by manager in its current state: ${claim.status}`);
+    }
+
+    await this.claimRepository.save(claim);
+
+    const audit = this.auditRepository.create({
+      userId,
+      action: 'EXPENSE_MANAGER_APPROVED',
+      entityName: 'ExpenseClaim',
+      entityId: claim.id,
+    });
+    await this.auditRepository.save(audit);
+
+    return claim;
+  }
+
+  async approveExpenseClaim(userId: string, claimId: string) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user || user.role !== UserRole.FINANCE && user.role !== UserRole.ADMIN) {
+      throw new BadRequestException('Only Finance or Admin can approve expense claims.');
+    }
+
+    const claim = await this.claimRepository.findOne({ where: { id: claimId }, relations: { travelRequest: true } });
+    if (!claim) {
+      throw new NotFoundException('Expense claim not found.');
+    }
+    if (claim.status !== ClaimStatus.PENDING_FINANCE && claim.status !== ClaimStatus.SUBMITTED) {
+      throw new BadRequestException(`Claim must be PENDING_FINANCE to be processed by Finance. Current status: ${claim.status}`);
+    }
+
+    claim.status = ClaimStatus.APPROVED;
+    await this.claimRepository.save(claim);
+
+    await this.notificationService.sendNotification(
+      claim.userId,
+      'Expense Claim Approved',
+      `Your expense claim for ₹${claim.claimAmount} has been approved and sent for payout.`,
+      'email',
+    );
+
+    const audit = this.auditRepository.create({
+      userId,
+      action: 'EXPENSE_APPROVED',
+      entityName: 'ExpenseClaim',
+      entityId: claim.id,
+    });
+    await this.auditRepository.save(audit);
 
     return claim;
   }

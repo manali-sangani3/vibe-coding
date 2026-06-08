@@ -1,4 +1,6 @@
-class UserEntity {
+import 'package:equatable/equatable.dart';
+
+class UserEntity extends Equatable {
   final String id;
   final String email;
   final String name;
@@ -16,23 +18,5 @@ class UserEntity {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is UserEntity &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          email == other.email &&
-          name == other.name &&
-          role == other.role &&
-          department == other.department &&
-          avatarUrl == other.avatarUrl;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      email.hashCode ^
-      name.hashCode ^
-      role.hashCode ^
-      department.hashCode ^
-      avatarUrl.hashCode;
+  List<Object?> get props => [id, email, name, role, department, avatarUrl];
 }

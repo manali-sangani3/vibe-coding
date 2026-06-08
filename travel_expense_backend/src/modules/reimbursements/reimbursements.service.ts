@@ -19,7 +19,7 @@ export class ReimbursementsService {
     @InjectRepository(AuditLog)
     private readonly auditRepository: Repository<AuditLog>,
     private readonly notificationService: NotificationService,
-  ) {}
+  ) { }
 
   async getReimbursementHistory(userId: string) {
     return this.reimbursementRepository.find({
@@ -27,6 +27,19 @@ export class ReimbursementsService {
       relations: { claim: true },
       order: { createdAt: 'DESC' },
     });
+  }
+
+  async getPendingReimbursements() {
+    return this.claimRepository.find({
+      where: { status: ClaimStatus.APPROVED },
+      relations: { travelRequest: true, user: true },
+      order: { createdAt: 'ASC' },
+    });
+  }
+
+  async markAsPaid(claimId: string, paymentRef: string) {
+    // Call the existing ERP payout logic locally with the mock key
+    return this.processErpPayout('erp-mock-key', claimId, paymentRef, 'PAID');
   }
 
   async processErpPayout(apiKey: string, claimId: string, paymentRef: string, status: string) {

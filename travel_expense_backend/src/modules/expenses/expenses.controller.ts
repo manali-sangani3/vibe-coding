@@ -5,10 +5,13 @@ import { ExpensesService } from './expenses.service';
 import { StorageService } from '../storage/storage.service';
 import { CreateExpenseClaimDto } from './dto/create-expense.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RolesGuard } from '../auth/roles.guard';
+import { Roles } from '../auth/roles.decorator';
+import { UserRole } from '../users/entities/user.entity';
 
 @ApiTags('Expenses')
 @Controller('expenses')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth()
 export class ExpensesController {
   constructor(
@@ -32,6 +35,14 @@ export class ExpensesController {
     return { success: true, data: list };
   }
 
+  @Get('pending-approvals')
+  @Roles(UserRole.MANAGER, UserRole.ADMIN, UserRole.FINANCE)
+  @ApiOperation({ summary: 'List expense claims pending my approval' })
+  async getPendingExpenseApprovals(@Req() req: any) {
+    const list = await this.expensesService.getPendingExpenseApprovals(req.user.id);
+    return { success: true, data: list };
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Get details of a specific expense claim' })
   @ApiResponse({ status: 200, description: 'Expense claim details returned successfully' })
@@ -39,6 +50,22 @@ export class ExpensesController {
   async getExpenseClaimById(@Param('id') id: string, @Req() req: any) {
     const detail = await this.expensesService.getExpenseClaimById(req.user.id, id);
     return { success: true, data: detail };
+  }
+
+  @Post(':id/manager-approve')
+  @Roles(UserRole.MANAGER, UserRole.ADMIN)
+  @ApiOperation({ summary: 'Manager approval for an expense claim' })
+  async managerApproveExpenseClaim(@Param('id') id: string, @Req() req: any) {
+    const claim = await this.expensesService.managerApproveExpenseClaim(req.user.id, id);
+    return { success: true, data: claim };
+  }
+
+  @Post(':id/approve')
+  @Roles(UserRole.FINANCE, UserRole.ADMIN)
+  @ApiOperation({ summary: 'Finance approval for an expense claim' })
+  async approveExpenseClaim(@Param('id') id: string, @Req() req: any) {
+    const claim = await this.expensesService.approveExpenseClaim(req.user.id, id);
+    return { success: true, data: claim };
   }
 
   @Post('upload')

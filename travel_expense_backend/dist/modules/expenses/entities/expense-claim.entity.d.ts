@@ -4,6 +4,9 @@ import { ExpenseItem } from './expense-item.entity';
 export declare enum ClaimStatus {
     DRAFT = "draft",
     SUBMITTED = "submitted",
+    PENDING_MANAGER = "pending_manager",
+    PENDING_DEPT_HEAD = "pending_dept_head",
+    PENDING_FINANCE = "pending_finance",
     APPROVED = "approved",
     REJECTED = "rejected",
     REIMBURSED = "reimbursed"

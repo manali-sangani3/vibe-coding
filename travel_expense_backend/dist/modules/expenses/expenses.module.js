@@ -19,6 +19,7 @@ const expenses_controller_1 = require("./expenses.controller");
 const storage_module_1 = require("../storage/storage.module");
 const notification_module_1 = require("../notifications/notification.module");
 const auth_module_1 = require("../auth/auth.module");
+const compliance_module_1 = require("../compliance/compliance.module");
 let ExpensesModule = class ExpensesModule {
 };
 exports.ExpensesModule = ExpensesModule;
@@ -35,6 +36,7 @@ exports.ExpensesModule = ExpensesModule = __decorate([
             storage_module_1.StorageModule,
             notification_module_1.NotificationModule,
             auth_module_1.AuthModule,
+            compliance_module_1.ComplianceModule,
         ],
         controllers: [expenses_controller_1.ExpensesController],
         providers: [expenses_service_1.ExpensesService],

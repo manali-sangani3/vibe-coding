@@ -10,7 +10,19 @@ export declare class ExpensesController {
         success: boolean;
         data: import("./entities/expense-claim.entity").ExpenseClaim[];
     }>;
+    getPendingExpenseApprovals(req: any): Promise<{
+        success: boolean;
+        data: import("./entities/expense-claim.entity").ExpenseClaim[];
+    }>;
     getExpenseClaimById(id: string, req: any): Promise<{
+        success: boolean;
+        data: import("./entities/expense-claim.entity").ExpenseClaim;
+    }>;
+    managerApproveExpenseClaim(id: string, req: any): Promise<{
+        success: boolean;
+        data: import("./entities/expense-claim.entity").ExpenseClaim;
+    }>;
+    approveExpenseClaim(id: string, req: any): Promise<{
         success: boolean;
         data: import("./entities/expense-claim.entity").ExpenseClaim;
     }>;

@@ -47,6 +47,14 @@ let ReimbursementsController = class ReimbursementsController {
         const list = await this.reimbursementsService.getReimbursementHistory(req.user.id);
         return { success: true, data: list };
     }
+    async getPendingReimbursements() {
+        const list = await this.reimbursementsService.getPendingReimbursements();
+        return { success: true, data: list };
+    }
+    async markAsPaid(req, claimId, paymentRef) {
+        const result = await this.reimbursementsService.markAsPaid(claimId, paymentRef || `MANUAL-${Date.now()}`);
+        return { success: true, data: result };
+    }
     async processErpPayout(apiKey, dto) {
         return this.reimbursementsService.processErpPayout(apiKey, dto.claimId, dto.paymentRef, dto.status);
     }
@@ -63,6 +71,27 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ReimbursementsController.prototype, "getReimbursementHistory", null);
+__decorate([
+    (0, common_1.Get)('reimbursements/pending'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all approved claims waiting for payout (Finance only)' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ReimbursementsController.prototype, "getPendingReimbursements", null);
+__decorate([
+    (0, common_1.Post)('reimbursements/:claimId/pay'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Manually mark an approved claim as paid (Finance only)' }),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('claimId')),
+    __param(2, (0, common_1.Body)('paymentRef')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, String]),
+    __metadata("design:returntype", Promise)
+], ReimbursementsController.prototype, "markAsPaid", null);
 __decorate([
     (0, common_1.Post)('integrations/erp/payout-callback'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),

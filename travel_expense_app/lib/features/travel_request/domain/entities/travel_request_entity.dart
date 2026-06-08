@@ -1,4 +1,6 @@
-class TravelRequestEntity {
+import 'package:equatable/equatable.dart';
+
+class TravelRequestEntity extends Equatable {
   final String id;
   final String title;
   final String description;
@@ -24,31 +26,16 @@ class TravelRequestEntity {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TravelRequestEntity &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          title == other.title &&
-          description == other.description &&
-          purpose == other.purpose &&
-          destination == other.destination &&
-          startDate == other.startDate &&
-          endDate == other.endDate &&
-          estimatedCost == other.estimatedCost &&
-          status == other.status &&
-          createdAt == other.createdAt;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      description.hashCode ^
-      purpose.hashCode ^
-      destination.hashCode ^
-      startDate.hashCode ^
-      endDate.hashCode ^
-      estimatedCost.hashCode ^
-      status.hashCode ^
-      createdAt.hashCode;
+  List<Object?> get props => [
+        id,
+        title,
+        description,
+        purpose,
+        destination,
+        startDate,
+        endDate,
+        estimatedCost,
+        status,
+        createdAt,
+      ];
 }

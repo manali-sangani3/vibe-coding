@@ -18,4 +18,24 @@ class ReimbursementsRepositoryImpl implements ReimbursementsRepository {
       return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Map<String, dynamic>>>> getPendingReimbursements() async {
+    try {
+      final list = await remoteDataSource.getPendingReimbursements();
+      return Right(list);
+    } catch (e) {
+      return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> markAsPaid(String claimId, String paymentRef) async {
+    try {
+      await remoteDataSource.markAsPaid(claimId, paymentRef);
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString().replaceAll('Exception: ', '')));
+    }
+  }
 }

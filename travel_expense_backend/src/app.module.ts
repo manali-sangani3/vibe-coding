@@ -30,6 +30,7 @@ import { ReimbursementsModule } from './modules/reimbursements/reimbursements.mo
 import { AuditModule } from './modules/audit/audit.module';
 import { ReportingModule } from './modules/reporting/reporting.module';
 import { BullModule } from '@nestjs/bullmq';
+import { ComplianceModule } from './modules/compliance/compliance.module';
 
 const isOffline = process.env.OFFLINE_MODE === 'true';
 

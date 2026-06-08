@@ -20,6 +20,9 @@ const expenses_service_1 = require("./expenses.service");
 const storage_service_1 = require("../storage/storage.service");
 const create_expense_dto_1 = require("./dto/create-expense.dto");
 const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
+const roles_guard_1 = require("../auth/roles.guard");
+const roles_decorator_1 = require("../auth/roles.decorator");
+const user_entity_1 = require("../users/entities/user.entity");
 let ExpensesController = class ExpensesController {
     expensesService;
     storageService;
@@ -34,9 +37,21 @@ let ExpensesController = class ExpensesController {
         const list = await this.expensesService.getExpenseClaims(req.user.id);
         return { success: true, data: list };
     }
+    async getPendingExpenseApprovals(req) {
+        const list = await this.expensesService.getPendingExpenseApprovals(req.user.id);
+        return { success: true, data: list };
+    }
     async getExpenseClaimById(id, req) {
         const detail = await this.expensesService.getExpenseClaimById(req.user.id, id);
         return { success: true, data: detail };
+    }
+    async managerApproveExpenseClaim(id, req) {
+        const claim = await this.expensesService.managerApproveExpenseClaim(req.user.id, id);
+        return { success: true, data: claim };
+    }
+    async approveExpenseClaim(id, req) {
+        const claim = await this.expensesService.approveExpenseClaim(req.user.id, id);
+        return { success: true, data: claim };
     }
     async uploadReceipt(file) {
         if (!file) {
@@ -76,6 +91,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ExpensesController.prototype, "getExpenseClaims", null);
 __decorate([
+    (0, common_1.Get)('pending-approvals'),
+    (0, roles_decorator_1.Roles)(user_entity_1.UserRole.MANAGER, user_entity_1.UserRole.ADMIN, user_entity_1.UserRole.FINANCE),
+    (0, swagger_1.ApiOperation)({ summary: 'List expense claims pending my approval' }),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ExpensesController.prototype, "getPendingExpenseApprovals", null);
+__decorate([
     (0, common_1.Get)(':id'),
     (0, swagger_1.ApiOperation)({ summary: 'Get details of a specific expense claim' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Expense claim details returned successfully' }),
@@ -86,6 +110,26 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], ExpensesController.prototype, "getExpenseClaimById", null);
+__decorate([
+    (0, common_1.Post)(':id/manager-approve'),
+    (0, roles_decorator_1.Roles)(user_entity_1.UserRole.MANAGER, user_entity_1.UserRole.ADMIN),
+    (0, swagger_1.ApiOperation)({ summary: 'Manager approval for an expense claim' }),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ExpensesController.prototype, "managerApproveExpenseClaim", null);
+__decorate([
+    (0, common_1.Post)(':id/approve'),
+    (0, roles_decorator_1.Roles)(user_entity_1.UserRole.FINANCE, user_entity_1.UserRole.ADMIN),
+    (0, swagger_1.ApiOperation)({ summary: 'Finance approval for an expense claim' }),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ExpensesController.prototype, "approveExpenseClaim", null);
 __decorate([
     (0, common_1.Post)('upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
@@ -112,7 +156,7 @@ __decorate([
 exports.ExpensesController = ExpensesController = __decorate([
     (0, swagger_1.ApiTags)('Expenses'),
     (0, common_1.Controller)('expenses'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, swagger_1.ApiBearerAuth)(),
     __metadata("design:paramtypes", [expenses_service_1.ExpensesService,
         storage_service_1.StorageService])

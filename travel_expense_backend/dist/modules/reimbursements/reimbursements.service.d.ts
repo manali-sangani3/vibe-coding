@@ -12,5 +12,7 @@ export declare class ReimbursementsService {
     private readonly notificationService;
     constructor(reimbursementRepository: Repository<Reimbursement>, claimRepository: Repository<ExpenseClaim>, travelRepository: Repository<TravelRequest>, auditRepository: Repository<AuditLog>, notificationService: NotificationService);
     getReimbursementHistory(userId: string): Promise<Reimbursement[]>;
+    getPendingReimbursements(): Promise<ExpenseClaim[]>;
+    markAsPaid(claimId: string, paymentRef: string): Promise<Reimbursement>;
     processErpPayout(apiKey: string, claimId: string, paymentRef: string, status: string): Promise<Reimbursement>;
 }

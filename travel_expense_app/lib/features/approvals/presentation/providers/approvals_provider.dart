@@ -101,7 +101,7 @@ class ApprovalsNotifier extends StateNotifier<ApprovalsState> {
 }
 
 final approvalsNotifierProvider =
-    StateNotifierProvider<ApprovalsNotifier, ApprovalsState>((ref) {
+    StateNotifierProvider.autoDispose<ApprovalsNotifier, ApprovalsState>((ref) {
   return ApprovalsNotifier(
     getPendingApprovalsUseCase: sl<GetPendingApprovalsUseCase>(),
     approveStageUseCase: sl<ApproveStageUseCase>(),

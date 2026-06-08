@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import '../../../travel_request/domain/entities/travel_request_entity.dart';
 import '../../../auth/domain/entities/user_entity.dart';
 
-class ExpenseItemEntity {
+class ExpenseItemEntity extends Equatable {
   final String id;
   final String? claimId;
   final String category;
@@ -19,28 +20,10 @@ class ExpenseItemEntity {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ExpenseItemEntity &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          claimId == other.claimId &&
-          category == other.category &&
-          amount == other.amount &&
-          description == other.description &&
-          receiptUrl == other.receiptUrl;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      claimId.hashCode ^
-      category.hashCode ^
-      amount.hashCode ^
-      description.hashCode ^
-      receiptUrl.hashCode;
+  List<Object?> get props => [id, claimId, category, amount, description, receiptUrl];
 }
 
-class ExpenseClaimEntity {
+class ExpenseClaimEntity extends Equatable {
   final String id;
   final String? travelRequestId;
   final TravelRequestEntity? travelRequest;
@@ -66,27 +49,15 @@ class ExpenseClaimEntity {
   });
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ExpenseClaimEntity &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          travelRequestId == other.travelRequestId &&
-          claimAmount == other.claimAmount &&
-          status == other.status &&
-          userId == other.userId &&
-          items == other.items &&
-          submittedAt == other.submittedAt &&
-          createdAt == other.createdAt;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      travelRequestId.hashCode ^
-      claimAmount.hashCode ^
-      status.hashCode ^
-      userId.hashCode ^
-      items.hashCode ^
-      submittedAt.hashCode ^
-      createdAt.hashCode;
+  List<Object?> get props => [
+        id,
+        travelRequestId,
+        travelRequest,
+        claimAmount,
+        status,
+        userId,
+        items,
+        submittedAt,
+        createdAt,
+      ];
 }

@@ -10,6 +10,7 @@ import { ExpensesController } from './expenses.controller';
 import { StorageModule } from '../storage/storage.module';
 import { NotificationModule } from '../notifications/notification.module';
 import { AuthModule } from '../auth/auth.module';
+import { ComplianceModule } from '../compliance/compliance.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { AuthModule } from '../auth/auth.module';
     StorageModule,
     NotificationModule,
     AuthModule,
+    ComplianceModule,
   ],
   controllers: [ExpensesController],
   providers: [ExpensesService],

@@ -41,10 +41,11 @@ class _TravelRequestFormPageState extends ConsumerState<TravelRequestFormPage> {
   }
 
   Future<void> _selectStartDate(BuildContext context) async {
+    final initialDate = DateTime.now().add(const Duration(days: 7));
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _startDate ?? DateTime.now().add(const Duration(days: 1)),
-      firstDate: DateTime.now(),
+      initialDate: _startDate ?? initialDate,
+      firstDate: initialDate,
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (picked != null && picked != _startDate) {

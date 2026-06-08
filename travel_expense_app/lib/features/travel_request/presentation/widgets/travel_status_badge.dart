@@ -11,10 +11,11 @@ class TravelStatusBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     Color bgColor;
     Color textColor;
-    String label = status.toUpperCase();
+    String label = status.replaceAll('_', ' ').toUpperCase();
 
     switch (status.toLowerCase()) {
       case 'approved':
+      case 'reimbursed':
         bgColor = AppColors.success.withValues(alpha: 0.12);
         textColor = AppColors.success;
         break;
@@ -26,11 +27,9 @@ class TravelStatusBadge extends StatelessWidget {
         bgColor = Colors.grey.withValues(alpha: 0.12);
         textColor = Colors.grey;
         break;
-      case 'pending':
       default:
         bgColor = AppColors.warning.withValues(alpha: 0.12);
         textColor = AppColors.warning;
-        label = 'PENDING';
         break;
     }
 
