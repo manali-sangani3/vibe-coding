@@ -2,6 +2,18 @@
 
 A modern, scalable Flutter application *(Version 1.0)* designed to handle end-to-end travel requests and expense reimbursements for corporate employees. 
 
+## 📸 Screenshots
+
+*(Images will display here once you save them to the `assets/screenshots/` directory)*
+
+<p align="center">
+  <img src="assets/screenshots/login.png" width="18%" alt="Login Screen" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/dashboard.png" width="18%" alt="Dashboard" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/travel_request.png" width="18%" alt="Travel Requests" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/travel_request_details.png" width="18%" alt="Request Details" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/approvals.png" width="18%" alt="Approvals Queue" onerror="this.style.display='none'"/>
+</p>
+
 ## 🚀 Current Status: Employee to Manager Flow
 
 The core approval hierarchy has been thoroughly tested and is functioning perfectly. The current implemented flow represents the standard **Employee -> Manager** relationship:
