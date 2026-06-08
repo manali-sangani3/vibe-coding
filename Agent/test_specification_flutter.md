@@ -45,14 +45,14 @@ This document defines the test specification for the Flutter client application.
 * **KPI Mapping:** System Adoption Rate (≥ 90%), Employee Satisfaction (≥ 4.5/5)
 * **Constraints:** Role-Based Access Control (RBAC) mapping; 30-minute inactivity auto-logout.
 
-| Test ID | Test Type | Scenario Description | Preconditions | Steps / Inputs | Expected Result |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC-AUTH-001** | Unit | Correct Role assignment from JWT token payload | None | Input JWT claim with role: `EMPLOYEE` / `FINANCE` / `MANAGER` | `UserModel` role translates to `UserRole.employee` / `finance` / `manager` |
-| **TC-AUTH-002** | Widget | Renders Single Sign-On (SSO) login option | App is on Login Screen | Open login screen | "Login with SSO" button is present and active |
-| **TC-AUTH-003** | Integration | SSO Login flow with valid token | User is not logged in | Tap SSO button, supply valid mocked token | Secure token is saved, user redirects to respective dashboard |
-| **TC-AUTH-004** | Integration | SSO Login flow with expired token | User is not logged in | Tap SSO button, supply expired token | Error message "Token expired" is shown; user remains on login screen |
-| **TC-AUTH-005** | Unit / Edge | Inactivity session timeout | User session is active | Simulate 30 minutes of app inactivity | `AuthRepository.logout` is called; redirects to login screen |
-| **TC-AUTH-006** | Unit / Edge | Idempotency on concurrent logins | User session is initializing | Trigger SSO call concurrently 3 times | API client initiates exactly 1 token exchange request |
+| Test ID | Test Type | Scenario Description | Preconditions | Steps / Inputs | Expected Result | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC-AUTH-001** | Unit | Correct Role assignment from JWT token payload | None | Input JWT claim with role: `EMPLOYEE` / `FINANCE` / `MANAGER` | `UserModel` role translates to `UserRole.employee` / `finance` / `manager` | ⚠️ **Pass (Deviation)**: Uses `String` instead of Enum. |
+| **TC-AUTH-002** | Widget | Renders Single Sign-On (SSO) login option | App is on Login Screen | Open login screen | "Login with SSO" button is present and active | ✅ **Pass**: SSO buttons present. |
+| **TC-AUTH-003** | Integration | SSO Login flow with valid token | User is not logged in | Tap SSO button, supply valid mocked token | Secure token is saved, user redirects to respective dashboard | ✅ **Pass**: Full flow implemented. |
+| **TC-AUTH-004** | Integration | SSO Login flow with expired token | User is not logged in | Tap SSO button, supply expired token | Error message "Token expired" is shown; user remains on login screen | ✅ **Pass**: 401s handled by Dio interceptors. |
+| **TC-AUTH-005** | Unit / Edge | Inactivity session timeout | User session is active | Simulate 30 minutes of app inactivity | `AuthRepository.logout` is called; redirects to login screen | ❌ **Fail**: Not yet implemented. |
+| **TC-AUTH-006** | Unit / Edge | Idempotency on concurrent logins | User session is initializing | Trigger SSO call concurrently 3 times | API client initiates exactly 1 token exchange request | ❌ **Fail**: Not yet implemented. |
 
 ---
 
