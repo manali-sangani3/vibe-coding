@@ -5,11 +5,12 @@ A modern, scalable Flutter application *(Version 1.0)* designed to handle end-to
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/login.png" width="18%" alt="Login Screen" onerror="this.style.display='none'"/>
-  <img src="assets/screenshots/dashboard.png" width="18%" alt="Dashboard" onerror="this.style.display='none'"/>
-  <img src="assets/screenshots/travel_request.png" width="18%" alt="Travel Requests" onerror="this.style.display='none'"/>
-  <img src="assets/screenshots/travel_request_details.png" width="18%" alt="Request Details" onerror="this.style.display='none'"/>
-  <img src="assets/screenshots/approvals.png" width="18%" alt="Approvals Queue" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/login.png" width="16%" alt="Login Screen" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/dashboard.png" width="16%" alt="Dashboard" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/travel_request.png" width="16%" alt="Travel Requests" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/travel_request_details.png" width="16%" alt="Request Details" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/approvals.png" width="16%" alt="Approvals Queue" onerror="this.style.display='none'"/>
+  <img src="assets/screenshots/expense_claims.png" width="16%" alt="Expense Claims" onerror="this.style.display='none'"/>
 </p>
 
 ## 🚀 Current Status: Employee to Manager Flow
