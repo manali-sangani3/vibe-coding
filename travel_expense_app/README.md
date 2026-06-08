@@ -4,8 +4,6 @@ A modern, scalable Flutter application *(Version 1.0)* designed to handle end-to
 
 ## 📸 Screenshots
 
-*(Images will display here once you save them to the `assets/screenshots/` directory)*
-
 <p align="center">
   <img src="assets/screenshots/login.png" width="18%" alt="Login Screen" onerror="this.style.display='none'"/>
   <img src="assets/screenshots/dashboard.png" width="18%" alt="Dashboard" onerror="this.style.display='none'"/>
