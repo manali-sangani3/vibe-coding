@@ -26,6 +26,19 @@ class ApiClient {
         },
       ),
     );
+
+    // Add logging interceptor for API requests and responses
+    dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestHeader: true,
+        requestBody: true,
+        responseHeader: true,
+        responseBody: true,
+        error: true,
+        logPrint: (obj) => print('🌍 API Log: $obj'),
+      ),
+    );
   }
 
   Future<Response> get(
