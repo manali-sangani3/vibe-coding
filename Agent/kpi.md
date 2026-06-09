@@ -9,7 +9,7 @@ Currently, travel requests, approvals, expense claims, and reimbursements are ma
 ## Given Prompt
 
 Role:
-Act as a Senior Business Analyst, Product Manager, and KPI Strategy Consultant.
+Act as a Senior Business Analyst
 
 Task:
 Based on the provided problem statement, create a comprehensive KPI document.
@@ -74,12 +74,6 @@ For the given problem statement, generate:
 
 Output Format:
 Generate the response in a professional KPI document format using tables wherever applicable.
-
-Problem Statement:
-**Project Name:** Enterprise Employee Travel & Expense Management System
-**Client Background**
-We are a large organization with approximately 10,000+ employees operating across multiple locations. Employees frequently travel for client meetings, training programs, audits, conferences, and internal business activities.
-Currently, travel requests, approvals, expense claims, and reimbursements are managed through emails, Excel sheets, phone calls, and paper documents. This process is time-consuming, lacks visibility, and creates operational challenges.
 
 
 ## Output

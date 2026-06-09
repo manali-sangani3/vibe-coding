@@ -39,7 +39,7 @@ Below is the chronological list of all the prompts you submitted during the prev
 
 * **Prompt #5 (2026-06-04 16:08:08)**
   ```
-  @[agent/kpi.md] ,@[agent/prd.md]  by refering this file genrate proper and crisp test cases file test_specification_flutter.md
+  @[agent/project_scope.md]  by refering this file genrate proper and crisp test cases file test_specification_flutter.md
   ```
 
 ---

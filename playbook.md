@@ -209,7 +209,7 @@ Always:
 ## 9. Generate KPI for a problem statement
 
 Role:
-Act as a Senior Business Analyst, Product Manager, and KPI Strategy Consultant.
+Act as a Senior Business Analyst
 
 Task:
 Based on the provided problem statement, create a comprehensive KPI document.
@@ -283,7 +283,7 @@ Problem Statement:
 ## 10. Generate PRD Doc from KPI Doc
 
 Role:
-Act as a Senior Flutter Developer
+Act as a Full Stack Developer
 
 Context:
 You are provided with a KPI document that contains the problem statement, business goals, KPIs, success metrics, risks, assumptions, and tracking framework.

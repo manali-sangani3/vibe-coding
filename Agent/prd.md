@@ -4,7 +4,7 @@
 
 # Role
 
-Act as a Senior Product Manager, Senior Flutter Architect, Senior Backend Architect (Node.js), Business Analyst, Solution Architect, QA Lead, and DevOps Consultant.
+Act as a Senior Flutter Architect, Senior Backend Architect (Node.js)
 
 # Context
 
@@ -552,7 +552,16 @@ List:
 Analyze the attached KPI document and generate the complete Technical PRD.
 
 
-## Outout
+
+
+
+
+
+
+
+
+
+# Outout
 
 # Technical Product Requirements Document (PRD)
 
