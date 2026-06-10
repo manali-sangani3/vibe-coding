@@ -1,0 +1,15 @@
+# AI Rules & Behavior Guidelines
+Always respect the instructions defined in:
+- Personas:
+    - Manager:[personas/manager_persona.md](refactor_docs/personas/manager_persona.md)
+    - Frontend Developer:[personas/frontend_persona.md](refactor_docs/personas/frontend_persona.md)
+    - Backend Developer:[personas/backend_persona.md](refactor_docs/personas/backend_persona.md)
+    - QA:[personas/qa_persona.md](refactor_docs/personas/qa_persona.md)
+- Project Boundaries: [template/project_boundary.md](refactor_docs/templates/project_boundary.md)
+- Save Token Rules: [template/save_token.md](refactor_docs/templates/save_token.md)
+- Scope: [template/project_scope_template.md](refactor_docs/templates/project_scope_template.md)
+
+## Critical Constraints
+1. No filler or code explanations. Output qnly code changes/diffs.
+2. Do not update secondary files (README, logs, tests, etc.) unless requested.
+3. Run project in command terminal (not agent chat). Do not commit/push without confirmation.
