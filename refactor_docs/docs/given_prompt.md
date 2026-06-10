@@ -1,6 +1,8 @@
 # Given prompt to generate KPI, PRD and Scope Document
 
-Act according to the [manager_persona.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/personas/manager_persona.md) . Work within this set boundaries [project_boundary.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/templates/project_boundary.md)  . Create a PRD by following the format specified in [prd_template.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/templates/prd_template.md) 
+Role: Act according to the [manager_persona.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/personas/manager_persona.md) . Work within this set boundaries [project_boundary.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/templates/project_boundary.md)  .
+
+Task: Create a PRD by following the format specified in [prd_template.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/templates/prd_template.md) 
  Create a KPI Document by following the format specified in [kpi_template.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/templates/kpi_template.md) .  Create a Scope Document by following the format specified in [project_scope_template.md](file;file:///Users/neosoft/StudioProjects/vibe%20coding/refactor_docs/templates/project_scope_template.md) . 
 
 Context: Project Name: Enterprise Employee Travel & Expense Management System. Client Background: We are a large organization with approximately 10,000+ employees operating across multiple locations. Employees frequently travel for client meetings, training programs, audits, conferences, and internal business activities. Currently, travel requests, approvals, expense claims, and reimbursements are managed through emails, Excel sheets, phone calls, and paper documents. This process is time-consuming, lacks visibility, and creates operational challenges. 
