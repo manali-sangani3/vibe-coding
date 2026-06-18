@@ -503,3 +503,9 @@ Markdown TDD.md only.
 kpi.md, prd.md by refering this file genrate proper and crisp test cases file test_specification_flutter.md
 
 ---
+
+"Act as a persona_qa.md. Task: Analyze implemented code inside flashgenius-app and KPI_v2.md and generate test cases and execute with mock data. Output: generate test cases inside flashgenius-app/tests"
+ 
+"run test files just created and create test report file in flashgenius-app/tests according to test_case_execution_template.md"
+
+ ---
